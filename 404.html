@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Centered Content */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        /* Neon Text */
+        .neon-text {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 
+                0 0 5px #00ffcc, 
+                0 0 10px #00ffcc, 
+                0 0 20px #00ffcc, 
+                0 0 40px #00ff99, 
+                0 0 80px #00ff99;
+            animation: neon-glow 2s infinite alternate;
+        }
+
+        /* Animated Subtext */
+        .subtext {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #ffffffb3;
+            animation: fade-in 3s infinite alternate;
+        }
+
+        /* Button */
+        .home-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            color: #000;
+            background: linear-gradient(90deg, #00ffcc, #00b3ff);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease-in-out;
+        }
+        .home-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Draggable Box */
+        .draggable-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #00ffcc;
+            box-shadow: 
+                0 0 10px #00ffcc, 
+                0 0 20px #00ffcc, 
+                0 0 40px #00ff99;
+            border-radius: 10px;
+            cursor: grab;
+            animation: drag-pulse 2s infinite alternate;
+        }
+
+        .draggable-box:hover {
+            cursor: grabbing;
+        }
+
+        /* Keyframes for Animation */
+        @keyframes neon-glow {
+            0% { text-shadow: 0 0 5px #00ffcc, 0 0 20px #00ff99; }
+            100% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff99; }
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes drag-pulse {
+            0% { box-shadow: 0 0 10px #00ffcc; }
+            100% { box-shadow: 0 0 20px #00ff99; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="neon-text">404</h1>
+        <p class="subtext">Oops! The page you're looking for doesn't exist.</p>
+        <a href="/" class="home-button">Return Home</a>
+    </div>
+    
+    <div class="draggable-box" id="draggable"></div>
+
+    <script>
+        // Dragging functionality
+        const draggable = document.getElementById('draggable');
+
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        draggable.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            draggable.style.cursor = 'grabbing';
+            offsetX = e.clientX - draggable.getBoundingClientRect().left;
+            offsetY = e.clientY - draggable.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                draggable.style.left = `${e.clientX - offsetX}px`;
+                draggable.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            draggable.style.cursor = 'grab';
+        });
+    </script>
+</body>
+  </html>
