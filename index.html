@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <script>
+    // Check if the current page is not found
+    if (document.title === "404 - Not Found" || document.body.innerText.includes("This Page Is Not Found")) {
+        // Redirect to your custom 404.html
+        window.location.href = "404.html";
+    }
+    </script>
   
     <div class="loading-screen">
      <div class="loading-box">
